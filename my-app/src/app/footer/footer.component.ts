@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PreferencesService } from '../common/service/preferences.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  listeCouleurs : string[] = [ "lightyellow", "white",
+     "lightgrey" , "lightgreen" , "lightpink" , "lightblue"] ; 
+
+  //injection de dépendance par constructeur (équivalent @Autowired de spring)
+  constructor(public preferencesService : PreferencesService) { }
 
   ngOnInit(): void {
   }
