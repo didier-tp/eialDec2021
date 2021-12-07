@@ -7,18 +7,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalculatriceComponent implements OnInit {
 
-  public a :number =0 ; //=0 pour initialiser a avec une valeur
-                        //par defaut (necessaire en mode strict)
-  public b: number =0;
+  a : number = 0;
+  b : number = 0;
+  res : number = 0;
 
-  public res : number =0;
+  montrerHisto : boolean = true;
+  historiqueCalculs :string[] = [];
 
-  public onAddition(){
-    this.res = this.a + this.b;
+  onCalculer(op:string){
+       switch(op){
+         case "+" :
+            this.res = Number(this.a) + Number(this.b);  break;
+        case "-" :
+              this.res = Number(this.a)- Number(this.b);  break;
+        case "*" :
+            this.res = Number(this.a) * Number(this.b);  break;
+        default:
+            this.res = 0;
+       }
+       this.historiqueCalculs.push(`${this.a} ${op} ${this.b} = ${this.res}`)
   }
 
-  public onMultiplication(){
-    this.res = this.a * this.b;
+  //coordonnées relatives de la souris qui survole une div
+  x:number=0; 
+  y:number=0;
+
+  onMouseMove(evt : MouseEvent){
+    let currentDiv : HTMLElement  = <HTMLElement> evt.target;
+    this.x = evt.pageX - currentDiv.offsetLeft;
+    this.y = evt.pageY - currentDiv.offsetTop;
+  }
+
+  onMouseLeave(evt : MouseEvent){
+    this.x=0; this.y=0;
   }
 
   constructor() { }
