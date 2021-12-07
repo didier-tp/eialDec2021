@@ -9,8 +9,9 @@ import { BasicComponent } from './basic/basic.component';
 import { CalculatriceComponent } from './basic/calculatrice/calculatrice.component';
 import { TvaComponent } from './basic/tva/tva.component';
 import { FormsModule } from '@angular/forms';
-import { XyComponent } from './basic/xy/xy.component';
 import { ZzComponent } from './basic/zz/zz.component';
+import { XyComponent } from './basic/xy/xy.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ZzComponent } from './basic/zz/zz.component';
     CalculatriceComponent,
     TvaComponent,
     XyComponent,
-    ZzComponent
+    ZzComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
