@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { ZzComponent } from './basic/zz/zz.component';
 import { XyComponent } from './basic/xy/xy.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { ConversionComponent } from './conversion/conversion.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
     TvaComponent,
     XyComponent,
     ZzComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    ConversionComponent
   ],
   imports: [
     BrowserModule,
