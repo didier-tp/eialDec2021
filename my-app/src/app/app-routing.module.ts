@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BasicComponent } from './basic/basic.component';
 import { ConversionComponent } from './conversion/conversion.component';
+
 import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [

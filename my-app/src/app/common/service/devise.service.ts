@@ -1,38 +1,35 @@
 import { Injectable } from '@angular/core';
 import { Devise } from '../data/devise';
 import { Observable, of } from 'rxjs';
-import { delay, map} from 'rxjs/operators';
-
+import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeviseService {
 
-  //jeux de données (en dur) pour pré-version (simulation asynchrone)
-  private devises : Devise[] = [
-    new Devise('EUR','euro',1.0),
-    new Devise('USD','dollar',1.1),
-    new Devise('GBP','livre',0.9)
-  ];
+  private _apiBaseUrl ="http://localhost:8282/devise-api"; 
+
+  constructor(private _http : HttpClient){}
 
   public getAllDevises$() : Observable<Devise[]>{
-      return of(this.devises) //version préliminaire (cependant asynchrone)
-            .pipe(
-               delay(111) //simuler une attente de 111ms 
-            );
+    let url = this._apiBaseUrl + "/public/devise" ;
+    console.log( "url = " + url);
+    return this._http.get<Devise[]>(url);
   }
 
   public convertir$(montant: number,
                    codeDeviseSrc : string, 
                    codeDeviseTarget : string
                    ) : Observable<number> {
-      let coeff =  Math.random();//coefficient aleatoire ici (simple simulation)
-      let montantConverti = montant * coeff;                    
-      return of(montantConverti) //version temporaire (cependant asynchrone)
-            .pipe(
-                 delay(222) //simuler une attente de 222ms 
-            );
+      let url = this._apiBaseUrl + "/public/convert" 
+         + `?source=${codeDeviseSrc}`
+         + `&target=${codeDeviseTarget}&amount=${montant}` ;
+      console.log( "url = " + url);
+      return this._http.get<object>(url)
+                  .pipe(
+                      map( (res :any) => res["result"])
+                  );
   }
-
 }

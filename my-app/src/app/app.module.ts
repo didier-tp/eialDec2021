@@ -13,7 +13,7 @@ import { ZzComponent } from './basic/zz/zz.component';
 import { XyComponent } from './basic/xy/xy.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ConversionComponent } from './conversion/conversion.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +30,8 @@ import { ConversionComponent } from './conversion/conversion.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
