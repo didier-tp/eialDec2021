@@ -4,12 +4,23 @@ import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
+
+export interface ConvertResult {
+  source :string; //ex: "EUR",
+  target :string; //ex: "USD",
+  amount :number; //ex: 200.0
+  result :number; //ex: 217.3913
+};
+
 @Injectable({
   providedIn: 'root'
 })
 export class DeviseService {
 
-  private _apiBaseUrl ="http://localhost:8282/devise-api"; 
+  //private _apiBaseUrl ="http://localhost:8282/devise-api"; 
+
+  //ok si ng serve --proxy-config proxy.conf.json
+  private _apiBaseUrl ="/devise-api"; 
 
   constructor(private _http : HttpClient){}
 
@@ -27,9 +38,9 @@ export class DeviseService {
          + `?source=${codeDeviseSrc}`
          + `&target=${codeDeviseTarget}&amount=${montant}` ;
       console.log( "url = " + url);
-      return this._http.get<object>(url)
+      return this._http.get<ConvertResult>(url)
                   .pipe(
-                      map( (res :any) => res["result"])
+                      map( (res :ConvertResult) => res.result)
                   );
   }
 }

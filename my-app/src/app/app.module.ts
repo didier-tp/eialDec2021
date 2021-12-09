@@ -14,6 +14,10 @@ import { XyComponent } from './basic/xy/xy.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ConversionComponent } from './conversion/conversion.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,13 +29,16 @@ import { HttpClientModule } from '@angular/common/http';
     XyComponent,
     ZzComponent,
     WelcomeComponent,
-    ConversionComponent
+    ConversionComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    TabsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
