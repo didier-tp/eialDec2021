@@ -11,8 +11,12 @@ export class LoginComponent implements OnInit {
   public login : Login = new Login();
   public message :string ="";
   public onLogin(){
-     this.message = "donnees saisies = " + JSON.stringify(this.login);
-  }
+     //this.message = "donnees saisies = " + JSON.stringify(this.login);
+     this.loginService.postLogin$(this.login).subscribe(
+       (loginResponse)=>{ this.message = loginResponse.message;},
+       (erreur)=>{this.message="erreur=" + erreur; }
+     );
+    }
 
   //injection de dépendance par constructeur
   constructor(private loginService :LoginService) { }
