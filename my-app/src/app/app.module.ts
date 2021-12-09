@@ -13,10 +13,12 @@ import { ZzComponent } from './basic/zz/zz.component';
 import { XyComponent } from './basic/xy/xy.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ConversionComponent } from './conversion/conversion.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { MyAuthInterceptor } from './common/interceptor/my-auth.interceptor';
+import { AdminDeviseComponent } from './admin-devise/admin-devise.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     ZzComponent,
     WelcomeComponent,
     ConversionComponent,
-    LoginComponent
+    LoginComponent,
+    AdminDeviseComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,13 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     BrowserAnimationsModule,
     TabsModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MyAuthInterceptor,
+      multi: true
+      }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
