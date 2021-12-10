@@ -1,0 +1,3 @@
+www.d-defrance.fr
+ partie services/QCM 
+(en mode eval : securité web (oauth2, ...) et micro_services )
